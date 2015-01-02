@@ -25,11 +25,11 @@ end
 # I だけ先に別途判定
 def judge_I(points)
   type = ""
+  # 水平か垂直か判定
   if points[0][0] == points[1][0] and
      points[0][0] == points[2][0] and 
      points[0][0] == points[3][0]
     type = "vertical"
-
   elsif points[0][1] == points[1][1] and
         points[0][1] == points[2][1] and 
         points[0][1] == points[3][1]
@@ -38,6 +38,7 @@ def judge_I(points)
     return false
   end
 
+  # 隣り合っているか判定
   prev = points[0]
   points[1..-1].each do |p|
     if type == "vertical"
@@ -64,6 +65,7 @@ class Tetro
     @arm_y = nil
   end
 
+  # 小さな L を見つける
   def create_body
     tmp_center = nil
     tmp_arm_x = nil
@@ -119,7 +121,6 @@ class Tetro
        (@points[@other][1] - @points[@arm_x][1]).abs == 1 and
        (@points[@other][0] - @points[@arm_y][0]).abs == 1 and
        (@points[@other][1] - @points[@arm_y][1]).abs == 0
-
       return "O"
     end
 
